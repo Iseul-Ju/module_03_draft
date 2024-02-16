@@ -1,59 +1,51 @@
+#import statement.
 import random
-import os
-from time import sleep
 
-# Set of transaction options
-transaction_options = {"D", "W", "Q"}
+#transaction options of deposit, withdraw and quit as a set.
+options = {'D', 'W', 'Q'}
 
-# Generate random bank balance
-bank_balance = float(random.randint(-1000, 10000))
+#user's balance as a float.
+balance = float(random.randint(-1000, 10000))
 
 # Function to display current balance
 def display_balance(balance):
-    print("*" * 40)
-    print("{:^40}".format("PIXELL RIVER FINANCIAL"))
-    print("{:^40}".format("ATM Simulator"))
-    print("{:^40}".format(f"Your current balance is: ${balance:,.2f}"))
-    print("{:^40}".format("Deposit: D"))
-    print("{:^40}".format("Withdraw: W"))
-    print("{:^40}".format("Quit: Q"))
-    print("*" * 40)
-    print()
+    print("***************************************")
+    print("PIXELL RIVER FINANCIAL".center(40))
+    print("ATM Simulator".center(40))
+    print(f"Your current balance is: ${balance:,.2f}".center(40))
+    print("")
+    print("Deposit: D".center(40))
+    print("Withdraw: W".center(40))
+    print("Quit: Q".center(40))
+    print("***************************************")
 
-# Print initial ATM interface
-display_balance(bank_balance)
-
-# Main loop for multiple transactions
+# Main program loop
 while True:
+    # Display ATM interface
+    display_balance(balance)
+    
     # Prompt user for selection
     selection = input("Enter your selection: ").upper()
-
+    
     # Validate selection
-    if selection not in transaction_options:
-        # Display invalid selection message
-        print("*" * 40)
-        print("{:^40}".format("INVALID SELECTION"))
-        print("*" * 40)
-        print()
+    if selection not in options:
+        print("***************************************")
+        print("INVALID SELECTION".center(40))
+        print("***************************************")
     else:
         # Process valid selection
-        if selection == "D" or selection == "W":
-            amount = float(input("Enter amount of transaction: "))
-            if selection == "D":
-                bank_balance += amount
-            elif selection == "W":
-                if amount > bank_balance:
-                    # Display insufficient funds message
-                    print("*" * 40)
-                    print("{:^40}".format("INSUFFICIENT FUNDS"))
-                    print("*" * 40)
-                    print()
-                else:
-                    bank_balance -= amount
-            display_balance(bank_balance)
+        if selection == "D":
+            amount = float(input("Enter amount of deposit: "))
+            balance += amount
+        elif selection == "W":
+            amount = float(input("Enter amount of withdrawal: "))
+            if amount > balance:
+                print("***************************************")
+                print("INSUFFICIENT FUNDS".center(40))
+                print("***************************************")
+            else:
+                balance -= amount
         elif selection == "Q":
-            break
+            break  # Quit action, exit the loop
 
-# Pause and clear the screen after 3 seconds
-sleep(3)
-os.system('cls' if os.name == 'nt' else 'clear')
+print("Thank you for using PIXELL RIVER FINANCIAL ATM Simulator!")
