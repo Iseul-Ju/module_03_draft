@@ -26,10 +26,10 @@ for i in range(-10, 0):
 
 
 # INPUT FUNCTION
-name = input('What is your name?')
-salary = float(input('What is your current salary?'))
+#name = input('What is your name?')
+#salary = float(input('What is your current salary?'))
 
-print(f"Name: {name} \nSalary: ${salary:,.2f}")  #(do exepction handling. 51 mins in demo to make sure user types in the proper answer)
+#print(f"Name: {name} \nSalary: ${salary:,.2f}")  #(do exepction handling. 51 mins in demo to make sure user types in the proper answer)
 
 
 # WHILE LOOP     #CTRL C to interrupt stuff
